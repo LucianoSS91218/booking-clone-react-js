@@ -1,0 +1,330 @@
+.flexible-container {
+  width: 96%;
+  padding: 15px 10px 13px 30px;
+  box-shadow: -2px 0 0 0 rgb(198, 198, 198);
+}
+
+.flexible-container input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+.flexible-container #howlongh3 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 7px;
+  margin-top: 17px;
+  font-weight: 900;
+}
+
+.container-options-radio {
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  margin-bottom: 10px;
+}
+
+.container-options-radio .common-options-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-days-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-days.container .inline-select {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.inline-select .child-first-field {
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.child-first-select .child-child-first-field {
+  display: flex;
+  position: relative;
+  isolation: isolate;
+}
+
+.child-child-first-field .div-input {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.div-input input[type="number"] {
+  font-size: calc(0.0625rem * 16);
+  line-height: calc(0.0625rem * 24);
+  font-weight: 600;
+  height: calc(4px * 9);
+  padding: 4px 8px;
+  border: none;
+  background: none;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 80px;
+  margin: 0;
+  border-radius: 4px;
+  z-index: 5;
+  position: relative;
+}
+
+.div-input .div-sibling-input {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(134, 134, 134);
+}
+
+.div-input .div-title-night {
+
+  font-size: calc(0.0625rem * 14);
+  line-height: calc(0.0625rem * 20);
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  color: #595959;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.div-nput .div-title-night::after {
+  content: "";
+  position: absolute;
+  inset-block: 8px;
+  width: 1px;
+  background-color: rgb(231, 231, 231);
+}
+
+.inline-select .child-last-field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.child-last-field select {
+  padding-inline-end: calc(32px + 4px);
+  padding-inline-start: 8px;
+  color: #595959;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgb(134, 134, 134);
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  padding: calc(3px);
+  min-height: calc(4px * 9);
+  line-height: calc(4px * 7);
+}
+
+.child-last-field .span-container-icon {
+  inset-inline-end: 8px;
+  inset-block-start: 50%;
+  position: absolute;
+  left: 118px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.span-container-icon .span-child-icon {
+  margin-inline-start: 12px;
+}
+
+.span-child-icon {
+  height: calc(4px * 5);
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: auto;
+}
+
+.flexible-container #whengo {
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.flexible-container #maxselectparagraph {
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: 11px;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 584px;
+  position: relative;
+  display: block;
+}
+
+.months-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.months-list .item {
+  border: 1px solid #eee;
+  border-radius: 2px;
+  /* white-space: normal; */
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+.months-list .item .month-card {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  position: relative;
+}
+
+.months-list .item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.months-list .item .month-card.selected {
+  border-color: #0071c2;
+  background-color: #e6f0ff;
+}
+
+.months-list .item .month-card.disabled {
+  background-color: rgb(236, 234, 234);
+}
+
+.months-list .item .month-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.months-list .span-container-text .month-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.months-list .icondate.selected {
+  color: #0071c2;
+}
+
+.months-list .monthname {
+  margin-top: 4px;
+  font-weight: 550;
+}
+
+.months-list .monthname.selected {
+  color: #0071c2;
+}
+
+.months-list .year {
+  margin-top: 4px;
+  font-size: 1rem;
+  color: black;
+}
+
+.months-list .year.selected {
+  color: #0071c2;
+}
+
+.months-list span.disabled {
+  color: gray;
+}
+
+/* arrows */
+.contentWrapper .arrow-btn {
+  background: none;
+  border: none;
+}
+
+.contentWrapper .arrowicon {
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+  opacity: 0.5;
+  height: 36px;
+}
+
+.contentWrapper .arrowicon:hover {
+  opacity: 0.8;
+}
+
+.contentWrapper .carouselLeftNav {
+  position: absolute;
+  top: 50px;
+  left: -5px;
+  color: black;
+  z-index: 50;
+}
+.contentWrapper .carouselRightNav {
+  position: absolute;
+  top: 50px;
+  right: -10px;
+  color: black;
+  z-index: 50;
+}
+
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 14px;
+}
+
+.submit #choose-days-months {
+  font-size: 17px;
+}
+
+.submit .btntoggle {
+  background: none;
+  border: none;
+  background-color: rgb(219, 219, 219);
+  border-radius: 4px;
+  border: 1px solid gray;
+  padding: 8px 11px;
+  color: gray;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.submit .btntoggle span {
+  font-size: 16px;
+}
+
+.btntoggle.toggleactive {
+  cursor: pointer;
+  background-color: #0071c2;
+}
