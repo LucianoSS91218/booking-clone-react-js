@@ -1,0 +1,40 @@
+.tabs {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.tabs li {
+  padding: 0px;
+  width: 100%;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  color: black;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 2px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.tabs button:hover {
+  background: rgb(0, 0, 0, 0.1);
+}
+
+#name {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tabs button.active {
+  border-bottom: 2px solid rgb(8, 48, 251);
+  color: rgb(8, 48, 251);
+}
