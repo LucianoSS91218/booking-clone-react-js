@@ -1,0 +1,199 @@
+.hero-banner-searchbox {
+  margin-top: 30px;
+  border: none;
+}
+
+body {
+  background-color: #fff;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+form .searchbox-layout- {
+  display: flex;
+  gap: 5px;
+  background-color: #f9c238;
+  box-shadow: 0px 2px 8px 0px #1a1a1a29;
+  border-radius: 8px;
+  padding: 4px;
+  /* margin: 24px 0px 0px 0px; */
+  width: 100%;
+  max-width: 1140px;
+  box-sizing: border-box;
+}
+
+/* direction for mobile and desktop */
+.wide {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.searchbox-layout- .container-field {
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  border-radius: 5px;
+  /*flex: 0 0 auto;*/
+  flex: 1;
+  min-height: 50px;
+}
+
+.container-field:first-child {
+  /*flex: 1 1 auto;*/
+  flex: 2;
+  max-width: 383px;
+}
+
+.container-field:last-child {
+  /*flex: 1 1 auto;*/
+  flex: 0.4;
+}
+
+/* box is reusable */
+.box {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* span icon reusable */
+.span-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.fitwidth {
+  max-width: 264px;
+}
+
+.span-container.max-width {
+  max-width: 277px;
+}
+
+.span-icon {
+  display: inline-block;
+  height: 24px;
+  color: #595959;
+  margin-right: 8px;
+}
+
+/* svg reusable */
+svg {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: auto;
+}
+
+/* button reusable */
+.searchbox-dates-container,
+.third-field-btn,
+.container-submit {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: white;
+}
+
+.third-field-btn {
+  padding: 8px;
+}
+
+/* below first btn */
+.first-field {
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.location-box .align .container-input {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+
+.container-input .container-locationicon {
+  padding-inline-start: 8px;
+}
+
+.container-locationicon .location-icon {
+  display: inline-block;
+  height: 24px;
+}
+
+.container-input input {
+  background: none;
+  flex-grow: 1;
+  border: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  width: 100%;
+  height: 4px;
+  padding: 4px 8px;
+  outline: none;
+  text-overflow: ellipsis;
+}
+
+.container-btn-close {
+  position: relative;
+  border: 1px solid #0000;
+  padding-inline-end: 8px;
+  margin-inline-start: 4px;
+}
+
+.container-btn-close button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.first-field .pos-rel {
+  position: relative;
+}
+
+.third-field-btn {
+  position: relative;
+}
+
+.arrow-icon {
+  height: 16px;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.container-submit {
+  background-color: #006ce4;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.container-submit span {
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
