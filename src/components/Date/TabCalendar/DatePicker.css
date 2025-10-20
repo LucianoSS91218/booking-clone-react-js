@@ -1,0 +1,80 @@
+.container-datepicker {
+  position: relative;
+}
+
+.container-datepicker h3 {
+  text-align: center;
+  margin: 0;
+  padding-top: 17px;
+  padding-bottom: 15px;
+  font-size: calc(0.0625rem * 16);
+  font-weight: 700;
+}
+
+.container-datepicker table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.container-datepicker table thead tr th {
+  font-weight: 400;
+  text-align: center;
+  border-block-start-width: 8px;
+  border-block-start-style: solid;
+  border-block-start-color: rgba(0, 0, 0, 0);
+  padding: 0px;
+  border-spacing: 0;
+}
+
+.container-datepicker table thead tr th div {
+  font-size: calc(0.0625rem * 16);
+  line-height: calc(0.0625rem * 20);
+  font-weight: 400;
+  color: #595959;
+}
+
+.container-datepicker table tbody tr td {
+  height: 39px;
+  padding: 0;
+  border-spacing: 0;
+  border-block: 4px solid rgba(0, 0, 0, 0);
+  outline: none;
+}
+
+.container-datepicker table tbody tr td .span-container-daycell {
+  box-sizing: border-box;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 0px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.day-disabled {
+  color: gray;
+  font-weight: 300;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.in-range {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.check-in-day,
+.check-out-day {
+  background-color: rgb(0, 108, 228);
+  color: white;
+  font-weight: 700;
+}
+
+.current-day {
+  color: #006ce4;
+  font-weight: 600;
+}
