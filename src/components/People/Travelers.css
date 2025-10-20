@@ -1,0 +1,253 @@
+.absolute-container {
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0px 2px 16px 0px #1a1a1a3d;
+  border-radius: 8px;
+  color: #1a1a1a;
+  display: block;
+  min-width: 350px;
+  padding: 32px;
+  position: absolute;
+  top: 29px;
+  left: -408px;
+  right: auto;
+  z-index: 200;
+}
+
+.absolute-container .center-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.center-container .label-type-title {
+  font-size: 17px;
+  line-height: calc(0.0625rem * 20);
+  font-weight: 550;
+}
+
+.center-container .div-field-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  border: 1px solid rgb(134, 134, 134);
+}
+
+.div-field-btn .button-value {
+  border: none;
+  background: none;
+  background: #0000;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: calc(8px);
+  padding-left: calc(8px);
+  user-select: none;
+  font-size: calc(0.0625rem * 14);
+  font-weight: 500;
+  line-height: calc(0.0625rem * 20);
+
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.div-field-btn .button-value:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.div-field-btn .button-value::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(#0000);
+  border-radius: 4px;
+  background-color: #0000;
+  border-color: #0000;
+  box-sizing: border-box;
+}
+
+.button-value.notallowed {
+  cursor: not-allowed;
+}
+
+.div-field-btn .button-value .span-decrease-increase-value {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin: 0 calc(12px * -1);
+}
+
+.span-decrease-increase-value .span-icon {
+  height: 16px;
+  display: inline-block;
+}
+
+.span-decrease-increase-value .span-icon svg {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: auto;
+}
+
+.div-field-btn .span-value {
+  font-size: calc(0.0625rem * 14);
+  line-height: calc(0.0625rem * 20);
+  font-weight: 550;
+  display: block;
+  text-align: center;
+  min-width: calc(32px + 4px);
+  margin: 0;
+}
+
+.center-container .range {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.div-field-btn .button-right {
+  color: #a2a2a2;
+  text-decoration: none;
+}
+
+.div-pets {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e7e7e7;
+  margin-bottom: 4px;
+  display: flex;
+  position: relative;
+  isolation: isolate;
+  font-size: calc(0.0625rem * 14);
+  line-height: calc(0.0625rem * 20);
+  font-weight: 400;
+}
+
+.div-pets input[type="checkbox"] {
+  width: 1px;
+  height: 1px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.div-pets .label-pets {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 100%;
+  isolation: isolate;
+  position: relative;
+  vertical-align: top;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.label-pets .span-checkbox {
+  position: relative;
+  cursor: pointer;
+  height: calc(4px * 5);
+  width: calc(4px * 5);
+  min-width: calc(4px * 9);
+  border-radius: 999px;
+}
+
+.label-pets .span-checkbox::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  border-radius: 50%;
+  transition-behavior: normal;
+  transition-duration: 0.12s;
+  transition-timing-function: cubic-bezier(0.2, 0, 0.4, 0.8);
+  transition-property: background, transform;
+  z-index: 100;
+  height: calc(12px + 2px);
+  width: calc(12px + 2px);
+  inset-block-start: calc(4px * 0.75);
+  inset-inline-start: calc(4px * 0.75);
+}
+
+.petsactive::before {
+  transform: translateX(16px);
+}
+
+.label-pets .span-question {
+  margin-inline-start: 0;
+  margin-inline-end: 12px;
+}
+
+.label-pets .span-absolute {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.div-service-pets {
+  font-size: 0.9rem;
+  font-weight: 450;
+}
+
+.div-service-pets .btn-service-pets {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #006ce4;
+  font-size: 0.8rem;
+  display: inline-flex;
+  line-height: calc(0.0625rem * 24);
+  margin-block: calc(3 * 0.0625rem * -1);
+  margin: 0;
+}
+
+.btn-ready {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #006ce4;
+  background-color: #fff;
+  border: 1px solid #006ce4;
+  border-radius: 4px;
+  margin-top: 16px;
+  padding: 4px;
+  width: 100%;
+  min-height: calc(4px * 9);
+  min-width: calc(4px * 9);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btn-ready span {
+  font-size: calc(0.0625rem * 14);
+  line-height: calc(0.0625rem * 20);
+  font-weight: 560;
+  font-size: calc(0.0625rem * 14);
+  line-height: calc(0.0625rem * 20);
+}
