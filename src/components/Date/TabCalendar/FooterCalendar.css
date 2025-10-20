@@ -1,0 +1,74 @@
+.datepicker-footer {
+  margin: 8px 14px;
+  padding-top: 8px;
+}
+
+.datepicker-footer fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.datepicker-footer fieldset .flexible-dates-container {
+  position: relative;
+}
+
+.flexible-dates-container ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  padding-left: 18px;
+  padding-bottom: 4px;
+}
+
+.flexible-dates-container ul li {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+.flexible-dates-container ul li label {
+  display: inline-flex;
+  position: relative;
+  border-radius: 25px;
+  white-space: normal;
+}
+
+.flexible-dates-container label input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.flexible-dates-container .span-container-flexibledates {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid rgb(134, 134, 134);
+  background-color: #fff;
+  border-radius: 100px;
+  padding: 11px;
+  box-shadow: inset 0 0 0 calc(1px / 2);
+  color: #1a1a1a;
+}
+
+.flexible-dates-container .span-container-flexibledates.active {
+  color: #006ce4;
+  border-color: #006ce4;
+}
+
+.span-container-flexibledates .span-icon-container {
+  height: 16px;
+}
+
+.span-container-flexibledates .span-icon-container .lastSpan-icon-svg svg {
+  vertical-align: top;
+  height: 100%;
+  width: auto;
+}
