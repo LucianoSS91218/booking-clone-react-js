@@ -1,0 +1,40 @@
+.searchbox-wrapper {
+  width: 100%;
+  max-width: 642px;
+  display: block;
+  box-shadow: 1px 1px 2px;
+  position: absolute;
+  top: 87px;
+  left: 400px;
+  z-index: 200;
+  border: none;
+  border-radius: 8px;
+}
+
+.searchbox-datepicker-calendar {
+  position: relative;
+
+}
+
+.searchbox-wrapper .divide-datepicker {
+
+  display: inline-flex;
+  box-sizing: border-box;
+  gap: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-bottom: 1px;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+
+}
+
+@media screen and (max-width: 768px) {
+  .homepage .wrapper .divide-datepicker {
+    display: flex;
+    flex-direction: column;
+  }
+}
