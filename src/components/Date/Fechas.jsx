@@ -1,9 +1,35 @@
 
+const MONTHS_NAMES = {
+  1: "Jan",
+  2: "Feb",
+  3: "March",
+  4: "Apr",
+  5: "May",
+  6: "Jun",
+  7: "July",
+  8: "August",
+  9: "September",
+  10: "October",
+  11: "November",
+  12: "December",
+};
+
+const DAYS_NAMES = {
+  1: "Lun",
+  2: "Mar",
+  3: "Mié",
+  4: "Jue",
+  5: "Vie",
+  6: "Sáb",
+  7: "Dom",
+};
+
 import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
+import { Temporal } from "temporal-polyfill";
 import { Tabs } from "./Tabs";
 import { PrevNextBtn } from "./TabCalendar/PrevNextBtn";
-import { DatePicker } from "./TabCalendar/DatePicker";
+import DatePicker from "./TabCalendar/DatePicker";
 import { FooterCalendar } from "./TabCalendar/FooterCalendar";
 import { Flexible } from "./TabFlexibleDates/Flexible";
 import "./Fechas.css";
@@ -11,7 +37,7 @@ import { useDatePicker } from "../../hooks/useDatePicker";
 import { useBookInOut } from "../../store/useBookInOut";
 import { DATE_TABS } from "../../consts";
 
-export function Fechas({ isOpen, onClose }) {
+export default function Fechas({ isOpen, onClose }) {
   const [calendarTab, setCalendarTab] = useState("Calendario");
 
   const onTabChange = (tab) => {
@@ -40,13 +66,8 @@ export function Fechas({ isOpen, onClose }) {
     isDisabledArrowRight2,
   ] = useDatePicker({ isCheckOutDate: true });
 
-  const {
-    flexibleDate,
-    checkInDate,
-    checkOutDate,
-    handleCheckIn,
-    handleCheckOut,
-  } = useBookInOut();
+  const { mode, checkInDate, checkOutDate, handleCheckIn, handleCheckOut } =
+    useBookInOut();
 
   const searchboxRef = useRef();
 
@@ -82,6 +103,17 @@ export function Fechas({ isOpen, onClose }) {
   const isisDisabledArrowLeft = isDisabledArrowLeft1();
 
   const isisDisabledArrowRight = isDisabledArrowRight2();
+
+  const getWeekDayName = ({ year, month, day }) => {
+    if (!year || !month || !day) return "";
+
+    const date = Temporal.PlainDate.from({
+      year: year,
+      month: month,
+      day: day,
+    });
+    return DAYS_NAMES[date.dayOfWeek];
+  };
 
   return ReactDOM.createPortal(
     <div className="searchbox-wrapper" ref={searchboxRef}>
@@ -157,6 +189,18 @@ export function Fechas({ isOpen, onClose }) {
                     </fieldset>
                   </div>
                 </div>
+
+                {mode === "calendar" ? (
+                  <span>{`${getWeekDayName(checkInDate)}, ${checkInDate?.day} ${
+                    MONTHS_NAMES[checkInDate?.month]
+                  } -- ${getWeekDayName(checkOutDate)}, ${
+                    checkOutDate?.day ? checkOutDate?.day : ""
+                  } ${
+                    checkOutDate?.month ? MONTHS_NAMES[checkOutDate?.month] : ""
+                  }`}</span>
+                ) : (
+                  ""
+                )}
               </div>
             )}
           </div>
