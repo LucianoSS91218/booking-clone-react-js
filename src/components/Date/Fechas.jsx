@@ -1,4 +1,3 @@
-
 const MONTHS_NAMES = {
   1: "Jan",
   2: "Feb",
