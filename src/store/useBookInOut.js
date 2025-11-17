@@ -1,6 +1,24 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
+/*
+type Mode = "CALENDAR" | "FLEXIBLE";
+
+interface DateState {
+  mode: Mode;
+  checkIn: Date | null;
+  checkOut: Date | null;
+  selectedFlexible: string[]; // meses
+  flexibleOption: string | null;
+  setMode: (mode: Mode) => void;
+  setCheckIn: (date: Date) => void;
+  setCheckOut: (date: Date) => void;
+  setSelectedFlexible: (months: string[]) => void;
+  setFlexibleOption: (opt: string) => void;
+}
+*/
+//por lo q hizo la ia lo mejor es actualizar el mode dependiendo si es flexible
+// o checkin y checkout
 export const useBookInOut = create()(
   devtools(
     (set, get) => ({
@@ -12,7 +30,7 @@ export const useBookInOut = create()(
       timedays: {
         dateOption: "Fechas Exactas",
         flexibleOption: null,
-        mode: null,
+        mode: "calendar",
       },
       howmanytravelers: {
         group_adults: 1,
@@ -30,6 +48,11 @@ export const useBookInOut = create()(
             checkInDate: { day: day, month: month, year: year },
             flexibleDate: [],
             displayMonths: [],
+            timedays: {
+              dateOption: "Fechas Exactas",
+              flexibleOption: null,
+              mode: "calendar",
+            },
           };
         } else {
           newState = {
@@ -81,24 +104,16 @@ export const useBookInOut = create()(
         });
       },
 
-      handleCalendarTime: (option) => {
-        set({
+      handleTime: (type, value, mode) => {
+        set((state) => ({
           timedays: {
-            dateOption: option,
-            flexibleOption: null,
-            mode: "calendar",
+            ...state.timedays,
+            mode: mode,
+            flexibleOption: mode === "calendar" ? null : "",
+            dateOption: mode === "flexible" ? null : "",
+            [type]: value,
           },
-        });
-      },
-
-      handleFlexibleTime: (option) => {
-        set({
-          timedays: {
-            dateOption: null,
-            flexibleOption: option,
-            mode: "flexible",
-          },
-        });
+        }));
       },
 
       handleIncreaseTravelersRooms: (fieldId, newValue) =>
