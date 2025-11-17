@@ -1,38 +1,17 @@
 import "./Form.css";
-import { useRef, useEffect, useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useId } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Temporal } from "temporal-polyfill";
-import { AutocompleteDropdown } from "./Location/AutocompleteDropdown";
-import { Suggestions } from "./Location/Suggestions.jsx";
-import { Travelers } from "./People/Travelers";
-import { Fechas } from "./Date/Fechas";
+import Suggestions from "./Location/Suggestions.jsx";
+import Fechas from "./Date/Fechas";
 import { useBookInOut } from "../store/useBookInOut";
 import { useToggle } from "../hooks/useToggle";
 import { useSearch } from "../hooks/useSearch.js";
 import { useSuggestions } from "../hooks/useSuggestions.js";
 import debounce from "just-debounce-it";
 import { Loader } from "./spinner/Loader.jsx";
-
-const MOCK_SUGGESTIONS = [
-  {
-    id: "location-1",
-    state: "Buenos Aires",
-    country: "Argentina",
-  },
-
-  {
-    id: "location-2",
-    state: "Budapest",
-    country: "Hungary",
-  },
-
-  { id: "location-3", state: "Amsterdam", country: "Holland" },
-
-  { id: "location-4", state: "Berlin", country: "Germany" },
-
-  { id: "location-5", state: "London", country: "England" },
-];
+import { lazy, Suspense } from "react";
 
 const MONTHS_NAMES = {
   1: "Ene",
@@ -71,23 +50,11 @@ export function Form() {
   const [isOpenDate, openDate, closeDate] = useToggle();
   const [isOpenTravelers, openTravelers, closeTravelers] = useToggle();
 
-  const autocompleteDropdownRef = useRef();
+  const LazyAutocompleteMock = lazy(() =>
+    import("./Location/AutocompleteMockList.jsx")
+  );
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        autocompleteDropdownRef.current &&
-        !autocompleteDropdownRef.current.contains(event.target)
-      ) {
-        closeAutocomplete();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpenAutocomplete, closeAutocomplete]);
+  const LazyTravelers = lazy(() => import("./People/Travelers.jsx"));
 
   const { search, updateSearch, errorForm } = useSearch();
 
@@ -125,30 +92,25 @@ export function Form() {
     Other: "",
   };
 
-  const getWeekDayName = ({ year, month, day }) => {
+  const getWeekDayName = useCallback(({ year, month, day }) => {
     if (!year || !month || !day) return "";
-
-    const date = Temporal.PlainDate.from({
-      year: year,
-      month: month,
-      day: day,
-    });
+    const date = Temporal.PlainDate.from({ year, month, day });
     return DAYS_NAMES[date.dayOfWeek];
-  };
+  }, []);
 
-  const monthName = displayMonths.toSorted((a, b) => {
-    if (a.year !== b.year) {
-      return a.year - b.year; 
-    }
-    return a.month - b.month;
-  });
+  const monthName = useMemo(() => {
+    return displayMonths.toSorted((a, b) => {
+      if (a.year !== b.year) return a.year - b.year;
+      return a.month - b.month;
+    });
+  }, [displayMonths]);
 
   const month1 = monthName?.length > 0 ? MONTHS_NAMES[monthName[0].month] : "";
   const month2 = monthName?.length > 1 ? MONTHS_NAMES[monthName[1].month] : "";
   const month3 = monthName?.length > 2 ? MONTHS_NAMES[monthName[2].month] : "";
 
   return (
-    <div className="hero-banner-searchbox">
+    <div>
       <form aria-label="Buscar-alojamientos">
         <div className={`searchbox-layout- ${isMobile ? "vertical" : "wide"}`}>
           <div className="container-field">
@@ -214,121 +176,18 @@ export function Form() {
                 </div>
 
                 {isOpenAutocomplete && citySuggestions?.length === 0 ? (
-                  <div
-                    className="autocomplete-results-container"
-                    ref={autocompleteDropdownRef}
-                  >
-                    <div
-                      className="wrapper-autocomplete"
-                      id="autocomplete-results"
-                      role="listbox"
-                    >
-                      <div className="container-box" role="listbox">
-                        <ul
-                          role="group"
-                          aria-labelledby="group-0-heading"
-                          className=""
-                        >
-                          <div id="group-0-heading" className="title-heading">
-                            Tus búsquedas recientes
-                          </div>
-                          <li
-                            className=""
-                            id="autocomplete-result-0"
-                            role="option"
-                          >
-                            <div
-                              role="button"
-                              tabIndex="-1"
-                              className="divbutton"
-                            >
-                              <div className="align-last-search">
-                                <span
-                                  className="autocomplete-icon-search-history"
-                                  aria-hidden="true"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="50px"
-                                  >
-                                    <path d="M13.5 22.75c5.799 0 10.5-4.701 10.5-10.5s-4.701-10.5-10.5-10.5S3 6.451 3 12.25V13a.75.75 0 0 0 1.5 0v-.75a9 9 0 1 1 9 9 .75.75 0 0 0 0 1.5M.22 10.527l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-3 3h1.06l-3-3a.75.75 0 0 0-1.06 1.06M12 6.247v6.75c0 .414.336.75.75.75H18a.75.75 0 0 0 0-1.5h-5.25l.75.75v-6.75a.75.75 0 0 0-1.5 0"></path>
-                                  </svg>
-                                </span>
-                                <div className="divcontent">
-                                  <div className="title-country font-country">
-                                    Londres
-                                  </div>
-                                  <div className="title-country font-people">
-                                    2 adultos
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li
-                            className=""
-                            id="autocomplete-result-1"
-                            role="option"
-                          >
-                            <div
-                              role="button"
-                              tabIndex="-1"
-                              className="divbutton"
-                            >
-                              <div
-                                className="align-last-search"
-                                data-testid="autocomplete-result"
-                              >
-                                <span
-                                  className="autocomplete-icon-search-history"
-                                  aria-hidden="true"
-                                >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="50px"
-                                  >
-                                    <path d="M13.5 22.75c5.799 0 10.5-4.701 10.5-10.5s-4.701-10.5-10.5-10.5S3 6.451 3 12.25V13a.75.75 0 0 0 1.5 0v-.75a9 9 0 1 1 9 9 .75.75 0 0 0 0 1.5M.22 10.527l3 3a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-3 3h1.06l-3-3a.75.75 0 0 0-1.06 1.06M12 6.247v6.75c0 .414.336.75.75.75H18a.75.75 0 0 0 0-1.5h-5.25l.75.75v-6.75a.75.75 0 0 0-1.5 0"></path>
-                                  </svg>
-                                </span>
-                                <div className="divcontent">
-                                  <div className="title-country font-country">
-                                    Madrid
-                                  </div>
-                                  <div className="title-country font-people">
-                                    2 adultos
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                        <ul
-                          role="group"
-                          aria-labelledby="group-1-heading"
-                          className=""
-                        >
-                          <div id="group-1-heading" className="title-heading">
-                            Destinos de moda
-                          </div>
-                          {MOCK_SUGGESTIONS.map((location) => (
-                            <AutocompleteDropdown
-                              key={location.id}
-                              state={location.state}
-                              country={location.country}
-                            />
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  <Suspense>
+                    <LazyAutocompleteMock
+                      isOpen={openAutocomplete}
+                      onClose={closeAutocomplete}
+                    />
+                  </Suspense>
                 ) : (
                   ""
                 )}
                 {loading && citySuggestions.length === 0 && <Loader />}
                 {!loading &&
-                  citySuggestions?.length > 1 &&
+                  citySuggestions?.length > 0 &&
                   !isOpenDate &&
                   !isOpenTravelers && (
                     <div
@@ -471,10 +330,12 @@ export function Form() {
               </button>
               <div style={{ position: "relative" }}>
                 {isOpenTravelers && (
-                  <Travelers
-                    isOpen={isOpenTravelers}
-                    onClose={closeTravelers}
-                  />
+                  <Suspense>
+                    <LazyTravelers
+                      isOpen={isOpenTravelers}
+                      onClose={closeTravelers}
+                    />
+                  </Suspense>
                 )}
               </div>
             </div>
