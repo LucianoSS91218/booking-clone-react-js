@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { Temporal } from "temporal-polyfill";
 import Suggestions from "./Location/Suggestions.jsx";
 import Fechas from "./Date/Fechas";
+import Travelers from "./People/Travelers.jsx";
 import { useBookInOut } from "../store/useBookInOut";
 import { useToggle } from "../hooks/useToggle";
 import { useSearch } from "../hooks/useSearch.js";
@@ -53,9 +54,7 @@ export function Form() {
   const LazyAutocompleteMock = lazy(() =>
     import("./Location/AutocompleteMockList.jsx")
   );
-
-  const LazyTravelers = lazy(() => import("./People/Travelers.jsx"));
-
+  
   const { search, updateSearch, errorForm } = useSearch();
 
   const { getData, citySuggestions, loading, error } = useSuggestions({
