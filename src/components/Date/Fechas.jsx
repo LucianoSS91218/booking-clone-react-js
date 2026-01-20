@@ -14,13 +14,13 @@ const MONTHS_NAMES = {
 };
 
 const DAYS_NAMES = {
-  1: "Lun",
-  2: "Mar",
-  3: "Mié",
-  4: "Jue",
-  5: "Vie",
-  6: "Sáb",
-  7: "Dom",
+  1: "Mon",
+  2: "Tue",
+  3: "Wed",
+  4: "Thu",
+  5: "Fri",
+  6: "Sat",
+  7: "Sun",
 };
 
 import ReactDOM from "react-dom";
@@ -40,7 +40,11 @@ export default function Fechas({ isOpen, onClose }) {
   const [calendarTab, setCalendarTab] = useState("Calendario");
 
   const onTabChange = (tab) => {
-    setCalendarTab(tab === "Calendario" ? "Calendario" : "Fechas Flexibles");
+    setCalendarTab(
+      tab === DATE_TABS.CALENDAR
+        ? DATE_TABS.CALENDAR
+        : DATE_TABS.FLEXIBLE_DATES,
+    );
   };
 
   const [
