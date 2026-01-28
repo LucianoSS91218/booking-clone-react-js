@@ -8,12 +8,14 @@ function getDaysInMonth(year, month) {
     .daysInMonth;
 }
 
-export function useDatePicker({ isCheckOutDate = false }) {
+export function useDatePicker({ isOtherMonth = false, month = 1 }) {
   const [currentDate, setCurrentDate] = useState(() => {
     const today = Temporal.Now.plainDateISO().with({ day: 1 });
-    const nextMonth = today.with({ day: 1 }).add({ months: 1 });
+    const otherMonth = Temporal.Now.plainDateISO()
+      .with({ day: 1 })
+      .add({ months: month });
 
-    return !isCheckOutDate ? today : nextMonth;
+    return isOtherMonth ? otherMonth : today;
   });
 
   const previousMonth = () => {
@@ -33,7 +35,7 @@ export function useDatePicker({ isCheckOutDate = false }) {
     const maxMonth = currentMonthStart.add({ months: 14 });
 
     if (
-      isCheckOutDate &&
+      isOtherMonth &&
       currentDate.year === maxMonth.year &&
       currentDate.month === maxMonth.month
     )
@@ -52,7 +54,7 @@ export function useDatePicker({ isCheckOutDate = false }) {
 
   const days = Array.from(
     { length: getDaysInMonth(currentDate.year, currentDate.month) },
-    (_, i) => i + 1
+    (_, i) => i + 1,
   );
 
   const calendarCells = [...blanks, ...days];
@@ -73,14 +75,14 @@ export function useDatePicker({ isCheckOutDate = false }) {
     const selectedDate = Temporal.PlainDate.from({ year, month, day });
     const today = Temporal.Now.plainDateISO();
 
-
     return Temporal.PlainDate.compare(selectedDate, today) < 0;
   }
 
   function isDisabledArrowLeft() {
+  
     const today = Temporal.Now.plainDateISO();
 
-    return !isCheckOutDate && currentDate.month === today.month;
+    return !isOtherMonth && currentDate.month === today.month;
   }
 
   function isDisabledArrowRight() {
@@ -88,7 +90,7 @@ export function useDatePicker({ isCheckOutDate = false }) {
     const currentMonthStart = today.with({ day: 1 });
     const maxMonth = currentMonthStart.add({ months: 15 });
     return (
-      isCheckOutDate &&
+      isOtherMonth &&
       currentDate.month === maxMonth.month &&
       currentDate.year == maxMonth.year
     );
