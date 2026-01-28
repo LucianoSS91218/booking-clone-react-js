@@ -1,16 +1,16 @@
 const MONTHS_NAMES = {
   1: "Jan",
   2: "Feb",
-  3: "March",
+  3: "Mar",
   4: "Apr",
   5: "May",
   6: "Jun",
   7: "July",
-  8: "August",
-  9: "September",
-  10: "October",
-  11: "November",
-  12: "December",
+  8: "Aug",
+  9: "Sep",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
 };
 
 const DAYS_NAMES = {
@@ -67,7 +67,7 @@ export default function Fechas({ isOpen, onClose }) {
     isDisabledDate2,
     isDisabledArrowLeft2,
     isDisabledArrowRight2,
-  ] = useDatePicker({ isCheckOutDate: true });
+  ] = useDatePicker({ isOtherMonth: true, month: 1 });
 
   const { mode, checkInDate, checkOutDate, handleCheckIn, handleCheckOut } =
     useBookInOut();
