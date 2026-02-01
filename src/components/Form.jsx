@@ -91,18 +91,15 @@ export function Form() {
     Other: "",
   };
 
-  const getWeekDayName = useCallback(({ year, month, day }) => {
+  const getWeekDayName = ({ year, month, day }) => {
     if (!year || !month || !day) return "";
     const date = Temporal.PlainDate.from({ year, month, day });
     return DAYS_NAMES[date.dayOfWeek];
-  }, []);
 
-  const monthName = useMemo(() => {
-    return displayMonths.toSorted((a, b) => {
+  const monthName = displayMonths.toSorted((a, b) => {
       if (a.year !== b.year) return a.year - b.year;
       return a.month - b.month;
     });
-  }, [displayMonths]);
 
   const month1 = monthName?.length > 0 ? MONTHS_NAMES[monthName[0].month] : "";
   const month2 = monthName?.length > 1 ? MONTHS_NAMES[monthName[1].month] : "";
